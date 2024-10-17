@@ -130,6 +130,8 @@ let vtubes_vts0 = tubeV_vtsC(func_bottom, list2, yrange6, 1, tubethick, 6);
 let uvtube_index = tube_indexC(detail2, 6, list1.length);
 let uvtube_index0 = tube_indexC(1, 6, list2.length);
 
+let tubea_index0 = tube_indexC(1, 6);
+
 let utube_main_vts = tubeU_vtsC(func6, [y1], xrange6, detail2, tubethick*1.8, 6);
 let vtube_main_vts = tubeV_vtsC(func6, [x1], yrange6, detail2, tubethick*1.8, 6);
 
@@ -205,9 +207,9 @@ addMeshC("vtube_main_vts", uvtube_index);
 
 //四隅の柱
 addMeshC([[0,0,0],[1,1,1],[1,0,0.5]], [[0,1,2]]);
-addMeshC(hashira2_vts, uvtube_index0, {scale:scale1, visible:"tube_visible"});
-addMeshC(hashira3_vts, uvtube_index0, {color:tubecolor2, visible:"tube_visible"});
-addMeshC(hashira4_vts, uvtube_index0, {color:tubecolor2, scale:scale1});
+addMeshC(hashira2_vts, tubea_index0, {scale:scale1, visible:"tube_visible"});
+addMeshC(hashira3_vts, tubea_index0, {color:tubecolor2, visible:"tube_visible"});
+addMeshC(hashira4_vts, tubea_index0, {color:tubecolor2, scale:scale1});
 
 //スライスが交わる箇所の柱
 addMeshC("hashira5_vts", uvtube_index0, {color:0xffffff, scale:scale1, visible:"slice_visible"});
