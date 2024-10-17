@@ -133,6 +133,9 @@ let uvtube_index0 = tube_indexC(1, 6, list2.length);
 let utube_main_vts = tubeU_vtsC(func6, [y1], xrange6, detail2, tubethick*1.8, 6);
 let vtube_main_vts = tubeV_vtsC(func6, [x1], yrange6, detail2, tubethick*1.8, 6);
 
+let tubeindexa = tube_indexC(1,6);
+let tubeindexb = tube_indexC(detail2, 6, 1);
+
 
 //スライスのgc
 let slice1_vts, slice2_vts;
@@ -193,8 +196,8 @@ addMeshC(vtubes_vts, uvtube_index, {color:tubecolor2, scale:scale1, visible:"tub
 addMeshC(utubes_vts0, uvtube_index0, {color:tubecolor1, scale:scale1, visible:"tube_visible"});  //床グリッド
 addMeshC(vtubes_vts0, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
 
-addMeshC("utube_main_vts", uvtube_index, {color:tubecolor1, scale:scale1, visible:"tube_visible"});    //スライスと重なるチューブ
-addMeshC("vtube_main_vts", uvtube_index, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC("utube_main_vts", tubeindexb, {color:tubecolor1, scale:scale1, visible:"tube_visible"});    //スライスと重なるチューブ
+addMeshC("vtube_main_vts", tubeindexb, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
 
 addMeshC("slice1_vts", slice_index, {color:0xff6600, scale:scale1, visible:"slice_visible"});   //スライス
 addMeshC("slice2_vts", slice_index, {color:0x00aaff, scale:scale1, visible:"slice_visible"});   
@@ -203,13 +206,13 @@ addMeshC("setsuheimen_vts", setsuheimen_index, {color:0x00aa00, scale:scale1, op
 addMeshC(main_mesh_vts, main_mesh_mesh, {color:0xffff00, scale:scale1, opacity:"opacity6b", visible:"surface_visible"});    //曲面
 
 //四隅の柱
-addMeshC(hashira1_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
-addMeshC(hashira2_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
-addMeshC(hashira3_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
-addMeshC(hashira4_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira1_vts, tubeindexa, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira2_vts, tubeindexa, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira3_vts, tubeindexa, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira4_vts, tubeindexa, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
 
 //スライスが交わる箇所の柱
-addMeshC("hashira5_vts", uvtube_index0, {color:0xffffff, scale:scale1, visible:"slice_visible"});
+addMeshC("hashira5_vts", tubeindexa, {color:0xffffff, scale:scale1, visible:"slice_visible"});
 
 const check1 = document.getElementById("check1");
 const check2 = document.getElementById("check2");
