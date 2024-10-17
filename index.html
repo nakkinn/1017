@@ -10,41 +10,49 @@
     <!--自作スライダーライブラリ　スライダーを追加する前に記述する-->
     <script src="myslider.js"></script>
 
-    <h3>z = 2 x^3 / 3 + 2 t x - y^2</h3>
+    <!--MathJX　数式を表記するためのライブラリ-->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <h4> \( z = x \, y \) </h4>
 
     <canvas id="3d_graphic_canvas" style="margin-left:-8px"></canvas> 
 
     <script>  
       let canvas1 = document.getElementById('3d_graphic_canvas'); 
-      let size = Math.min(600, window.innerWidth);
+      let size = Math.min(500, window.innerWidth);
       canvas1.width = size * window.devicePixelRatio; 
-      canvas1.height = size * window.devicePixelRatio * 0.85;
+      canvas1.height = size * window.devicePixelRatio * 0.9;
       canvas1.style.width = size;
-      canvas1.style.height = size * 0.85;
+      canvas1.style.height = size * 0.9;
     </script>
 
-    <div style="height:10px"></div>
 
-    <input type="checkbox" id="check1">
-    <label for="check1">メッシュ</label>
+    <div style="height:30px"></div>
 
-    <input type="checkbox" id="check2" checked>
-    <label for="check2">チューブ</label>
+    <!--別ページにとぶボタン-->
+    <div style="display:flex; flex-wrap:wrap;">
+      <button id="button1" style="height:35px; margin-left:5px;"> \( z = x \, y \)</button>
+      <button id="button2" style="height:35px; margin-left:5px;"> \( z = x^2 + y^2 \)</button>
+      <button id="button3" style="height:35px; margin-left:5px;"> \( z = x^3 - x - y^2 \)</button>
+      <button id="button4" style="height:35px; margin-left:5px;"> \( z = \mathrm{Tan}^{-1}\frac{y}{x} \)</button>
+      <button id="button5" style="height:35px; margin-left:5px;"> \( z = \frac{x}{\sqrt{x^2 + y^2}} \)</button>
+      <button id="button6" style="height:35px; margin-left:5px;"> \( z = \mathrm{Tan}^{-1} x \, y \)</button>
+      <button id="button7" style="height:35px; margin-left:5px;"> \( z = \frac{xy}{x^2+y^2} \)</button>
+      <button id="button8" style="height:35px; margin-left:5px;"> \( z = \frac{\mathrm{sin} \, 2\theta}{2} \)</button>
+    </div>
 
-    <input type="checkbox" id="check3" checked>
-    <label for="check3">柱</label>
-
-    <input type="checkbox" id="check4" checked>
-    <label for="check4">スライス</label>
-
-    <div style="height:10px"></div>
-
-    <!--スライダーの追加-->
+    <!--ボタンを押したときの処理-->
     <script>
-      const slider1 = new Slider1d({width:Math.min(400, window.innerWidth),bar_width:Math.min(400*0.85, window.innerWidth*0.85),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff",value:0})
-      const slider2 = new Slider1d({width:Math.min(400, window.innerWidth),bar_width:Math.min(400*0.85, window.innerWidth*0.85),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff",value:0.5})
-      const slider3 = new Slider1d({width:Math.min(400, window.innerWidth),bar_width:Math.min(400*0.85, window.innerWidth*0.85),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff",value:0.5})
+      document.getElementById("button1").addEventListener("click", ()=>{window.location.href = "index.html";});
+      document.getElementById("button2").addEventListener("click", ()=>{window.location.href = "index2.html";});
+      document.getElementById("button3").addEventListener("click", ()=>{window.location.href = "index3.html";});
+      document.getElementById("button4").addEventListener("click", ()=>{window.location.href = "index4.html";});
+      document.getElementById("button5").addEventListener("click", ()=>{window.location.href = "index5.html";});
+      document.getElementById("button6").addEventListener("click", ()=>{window.location.href = "index6.html";});
+      document.getElementById("button7").addEventListener("click", ()=>{window.location.href = "index7.html";});
+      document.getElementById("button8").addEventListener("click", ()=>{window.location.href = "index8.html";});
     </script>
+
 
 
     <!--three.jsライブラリ-->
@@ -52,7 +60,7 @@
 
     <!--メインソース-->
     <script src="common_cgweb1.js"></script>
-    <script src='script4_2.js'></script> 
+    <script src='script1.js'></script> 
 
 
   </body>
