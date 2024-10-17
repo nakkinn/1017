@@ -204,7 +204,7 @@ addMeshC("vtube_main_vts", uvtube_index);
 //addMeshC(main_mesh_vts, main_mesh_mesh, {color:0xffff00, scale:scale1, opacity:"opacity6b", visible:"surface_visible"});    //曲面
 
 //四隅の柱
-addMeshC(hashira1_vts, uvtube_index0);
+addMeshC([[0,0,0],[1,1,1],[1,0,0.5]], [[0,1,2]]);
 addMeshC(hashira2_vts, uvtube_index0, {scale:scale1, visible:"tube_visible"});
 addMeshC(hashira3_vts, uvtube_index0, {color:tubecolor2, visible:"tube_visible"});
 addMeshC(hashira4_vts, uvtube_index0, {color:tubecolor2, scale:scale1});
