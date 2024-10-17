@@ -130,11 +130,8 @@ let vtubes_vts0 = tubeV_vtsC(func_bottom, list2, yrange6, 1, tubethick, 6);
 let uvtube_index = tube_indexC(detail2, 6, list1.length);
 let uvtube_index0 = tube_indexC(1, 6, list2.length);
 
-let tubea_index0 = tube_indexC(1, 6);
-
 let utube_main_vts = tubeU_vtsC(func6, [y1], xrange6, detail2, tubethick*1.8, 6);
 let vtube_main_vts = tubeV_vtsC(func6, [x1], yrange6, detail2, tubethick*1.8, 6);
-
 
 
 //スライスのgc
@@ -186,30 +183,30 @@ function vslice_vtsC(func, u1, vrange, m, soko){
 
 
 
-//addMeshC("pointer_sphere_vts", pointer_sphere_index, {color:0x00ff00, scale:scale1, visible:"setsuheimen_visible"});   //球
+addMeshC("pointer_sphere_vts", pointer_sphere_index, {color:0x00ff00, scale:scale1, visible:"setsuheimen_visible"});   //球
 
-//addMeshC("redtube_vts", tube_index, {color:0xff0000, scale:scale1, visible:"setsuheimen_visible"});  //傾き
-//addMeshC("bluetube_vts", tube_index, {color:0x0000ff, scale:scale1, visible:"setsuheimen_visible"});   //傾き
+addMeshC("redtube_vts", tube_index, {color:0xff0000, scale:scale1, visible:"setsuheimen_visible"});  //傾き
+addMeshC("bluetube_vts", tube_index, {color:0x0000ff, scale:scale1, visible:"setsuheimen_visible"});   //傾き
 
-//addMeshC(utubes_vts, uvtube_index, {color:tubecolor1, scale:scale1, visible:"tube_visible"});    //曲面上のグリッド
-//addMeshC(vtubes_vts, uvtube_index, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
-//addMeshC(utubes_vts0, uvtube_index0, {color:tubecolor1, scale:scale1, visible:"tube_visible"});  //床グリッド
-//addMeshC(vtubes_vts0, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(utubes_vts, uvtube_index, {color:tubecolor1, scale:scale1, visible:"tube_visible"});    //曲面上のグリッド
+addMeshC(vtubes_vts, uvtube_index, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(utubes_vts0, uvtube_index0, {color:tubecolor1, scale:scale1, visible:"tube_visible"});  //床グリッド
+addMeshC(vtubes_vts0, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
 
-addMeshC("utube_main_vts", uvtube_index);    //スライスと重なるチューブ
-addMeshC("vtube_main_vts", uvtube_index);
+addMeshC("utube_main_vts", uvtube_index, {color:tubecolor1, scale:scale1, visible:"tube_visible"});    //スライスと重なるチューブ
+addMeshC("vtube_main_vts", uvtube_index, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
 
-//addMeshC("slice1_vts", slice_index, {color:0xff6600, scale:scale1, visible:"slice_visible"});   //スライス
-//addMeshC("slice2_vts", slice_index, {color:0x00aaff, scale:scale1, visible:"slice_visible"});   
+addMeshC("slice1_vts", slice_index, {color:0xff6600, scale:scale1, visible:"slice_visible"});   //スライス
+addMeshC("slice2_vts", slice_index, {color:0x00aaff, scale:scale1, visible:"slice_visible"});   
 
-//addMeshC("setsuheimen_vts", setsuheimen_index, {color:0x00aa00, scale:scale1, opacity:0.8, visible:"setsuheimen_visible"});  //接平面 
-//addMeshC(main_mesh_vts, main_mesh_mesh, {color:0xffff00, scale:scale1, opacity:"opacity6b", visible:"surface_visible"});    //曲面
+addMeshC("setsuheimen_vts", setsuheimen_index, {color:0x00aa00, scale:scale1, opacity:0.8, visible:"setsuheimen_visible"});  //接平面 
+addMeshC(main_mesh_vts, main_mesh_mesh, {color:0xffff00, scale:scale1, opacity:"opacity6b", visible:"surface_visible"});    //曲面
 
 //四隅の柱
-addMeshC([[0,0,0],[1,1,1],[1,0,0.5]], [[0,1,2]]);
-addMeshC(hashira2_vts, tubea_index0, {scale:scale1, visible:"tube_visible"});
-addMeshC(hashira3_vts, tubea_index0, {color:tubecolor2, visible:"tube_visible"});
-addMeshC(hashira4_vts, tubea_index0, {color:tubecolor2, scale:scale1});
+addMeshC(hashira1_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira2_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira3_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira4_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
 
 //スライスが交わる箇所の柱
 addMeshC("hashira5_vts", uvtube_index0, {color:0xffffff, scale:scale1, visible:"slice_visible"});
