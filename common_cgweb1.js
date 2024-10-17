@@ -7,10 +7,6 @@ function sin(a1){return Math.sin(a1)};
 function cos(a1){return Math.cos(a1)};
 function tan(a1){return Math.tan(a1)};
 function sqrt(a1){return Math.sqrt(a1)};
-function asin(a1){return Math.asin(a1)};
-function acos(a1){return Math.acos(a1)};
-function atan(a1){return Math.atan(a1)};
-
 
 
 //#############################################################
