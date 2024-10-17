@@ -203,13 +203,13 @@ addMeshC("setsuheimen_vts", setsuheimen_index, {color:0x00aa00, scale:scale1, op
 addMeshC(main_mesh_vts, main_mesh_mesh, {color:0xffff00, scale:scale1, opacity:"opacity6b", visible:"surface_visible"});    //曲面
 
 //四隅の柱
-addMeshC(hashira1_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
-addMeshC(hashira2_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
-addMeshC(hashira3_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
-addMeshC(hashira4_vts, uvtube_index0, {color:tubecolor2, scale:scale1, visible:"tube_visible"});
+addMeshC(hashira1_vts, uvtube_index0, {color:tubecolor2, scale:scale1});
+addMeshC(hashira2_vts, uvtube_index0, {color:tubecolor2, scale:scale1});
+addMeshC(hashira3_vts, uvtube_index0, {color:tubecolor2, scale:scale1});
+addMeshC(hashira4_vts, uvtube_index0, {color:tubecolor2, scale:scale1});
 
 //スライスが交わる箇所の柱
-addMeshC("hashira5_vts", uvtube_index0, {color:0xffffff, scale:scale1, visible:"slice_visible"});
+addMeshC("hashira5_vts", uvtube_index0, {color:0xffffff, scale:scale1});
 
 const check1 = document.getElementById("check1");
 const check2 = document.getElementById("check2");
