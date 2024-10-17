@@ -155,7 +155,7 @@ let hashira3_vts = tube_vts1C(hashira3_core_vts, tubethick, 6);
 let hashira4_vts = tube_vts1C(hashira4_core_vts, tubethick, 6);
 let hashira5_vts = tube_vts1C(hashira5_core_vts, tubethick*2, 6);
 
-alert(hashira1_core_vts);
+alert(hashira1_vts);
 
 
 
