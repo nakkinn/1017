@@ -39,6 +39,7 @@ let spherecut_radius = 3.8; //カット球面の半径
 
 let detail = 128;    //分割数
 
+addCanvasC(mycanvas, {width:500, height:400});
 
 
 //##################################
