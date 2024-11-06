@@ -129,8 +129,6 @@ document.querySelectorAll("canvas").forEach( canvas => {
                 // active_canvas.removeEventListener('touchmove', handleTouchMoveC); //タッチデバイスをなぞったときhandleTouchMoveを発火
                 // active_canvas.removeEventListener('touchend', handleTouchEndC);   //タッチデバイスから指を離したときhandleTouchEndを発火
 
-                console.log( "active_index", i);
-
                 active_index = i;
                 active_canvas = scene_group[i].renderer.domElement;
                 active_camera = scene_group[i].camera;

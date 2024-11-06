@@ -91,12 +91,13 @@ function randomstrC(){
 
 
 function addCanvasC(element, option){
+
     const defaultoption = {parent:document.body ,width:550, height:550, max_width:window.innerWidth, max_height:window.innerHeight, fontSize:null, marginLeft:null, marginRight:null, marginTop:null, marginBottom:null};
     option = {...defaultoption, ...option};
-    element.width = Math.min(option.width, option.max_width);
-    element.style.width = window.devicePixelRatio * Math.min(option.width, option.max_width);
-    element.height = Math.min(option.height, option.max_height);
-    element.style.height = window.devicePixelRatio * Math.min(option.height, option.max_height);
+    element.style.width = Math.min(option.width, option.max_width);
+    element.width = window.devicePixelRatio * Math.min(option.width, option.max_width);
+    element.style.height = Math.min(option.height, option.max_height);
+    element.height = window.devicePixelRatio * Math.min(option.height, option.max_height);
 
     if(option.marginLeft != null) element.style.marginLeft = option.marginLeft + "px";
     if(option.marginRight != null) element.style.marginRight = option.marginRight + "px";
