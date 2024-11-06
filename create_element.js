@@ -94,10 +94,10 @@ function addCanvasC(element, option){
 
     const defaultoption = {parent:document.body ,width:550, height:550, max_width:window.innerWidth, max_height:window.innerHeight, fontSize:null, marginLeft:null, marginRight:null, marginTop:null, marginBottom:null};
     option = {...defaultoption, ...option};
-    element.style.width = Math.min(option.width, option.max_width);
-    element.width =  Math.min(option.width, option.max_width) * window.devicePixelRatio;
-    element.style.height = Math.min(option.height, option.max_height);
-    element.height =  Math.min(option.height, option.max_height) * window.devicePixelRatio;
+    element.style.width = 200//Math.min(option.width, option.max_width);
+    element.width =  200//Math.min(option.width, option.max_width) * window.devicePixelRatio;
+    element.style.height = 200//Math.min(option.height, option.max_height);
+    element.height =  200//Math.min(option.height, option.max_height) * window.devicePixelRatio;
 
     if(option.marginLeft != null) element.style.marginLeft = option.marginLeft + "px";
     if(option.marginRight != null) element.style.marginRight = option.marginRight + "px";
