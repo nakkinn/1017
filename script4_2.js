@@ -46,7 +46,7 @@ let detail = 128;    //分割数
 
 //レンダラー
 let renderer1 = new THREE.WebGLRenderer({
-    canvas:document.getElementById("mycanvas"),//mycanvas,  //描画先のキャンバス
+    canvas:mycanvas,  //描画先のキャンバス
     antialias: true,    //trueの時:境界線のスムージングを有効にする
     alpha:false, //trueの時:キャンバスを透過させる（下のレイヤーが見える）
     preserveDrawingBuffer: false    //trueの時:キャンバスの内容を画像データとして保持する。toDataURLを使った画像保存が可能になる

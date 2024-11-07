@@ -281,7 +281,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
 
         camera.updateProjectionMatrix();
-        //renderer.setSize(canvas.style.width, canvas.style.height);
+        renderer.setSize(canvas.width/window.devicePixelRatio, canvas.height/window.devicePixelRatio);
+        console.log(canvas.width, canvas.height, canvas.style.width, canvas.style.height);
     }
 
     cgweb_setupC();
