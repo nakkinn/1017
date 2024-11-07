@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
 
         camera.updateProjectionMatrix();
-        renderer.setSize(canvas.width, canvas.height);
+        renderer.setSize(canvas.width/window.devicePixelRatio, canvas.height/window.devicePixelRatio);
         renderer.setPixelRatio(window.devicePixelRatio);
         console.log(canvas.width, canvas.height, canvas.style.width, canvas.style.height);
     }
