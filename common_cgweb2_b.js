@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 // ダブルタップズームを防止
-document.addEventListener('click', function(event) {
+document.addEventListener('pointerdown', function(event) {
     event.preventDefault();
     // alert("double tap")
 });
