@@ -314,6 +314,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
 // });
 
 
+// ダブルタップズームを防止
+document.addEventListener('dblclick', function(event) {
+    event.preventDefault();
+});
+
+
 //スマホで要素を長押しした際に、右クリックメニューが出ないようにする
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('html, body').forEach((element) => {
