@@ -325,9 +325,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // 長押し時のデフォルトアクション（拡大鏡や共有）を無効化
-document.addEventListener('touchstart', function(event) {
-    event.preventDefault();
-}, { passive: false });
+// document.addEventListener('touchstart', function(event) {
+//     event.preventDefault();
+// }, { passive: false });
 
 
 
@@ -1310,4 +1310,47 @@ function arrayC(array1){
     if(array1.start<array1.end) for(let i=array1.start; i<=array1.end; i+=array1.step)  result.push(i);
     else for(let i=array1.start; i>=array1.end; i-=array1.step)  result.push(i);
     return result;
+}
+
+
+//入力されたシーンをactive状態にする
+function activateC(canvas){
+
+    if(canvas != active_canvas){
+        
+        for(let i=0; i<cg_container.length; i++){
+            if(cg_container[i].renderer.domElement === canvas){
+                active_canvas = cg_container[i].renderer.domElement;
+                active_scene = cg_container[i].scene;
+                active_renderer = cg_container[i].renderer;
+                active_camera = cg_container[i].camera;
+                active_index = i;
+
+                angularvelocity1.set(0, 0, 0);
+                pmouseX1 = -1, pmouseY1 = -1, pmouseX2 = -1, pmouseY2 = -1;
+                mousemovementX = 0, mousemovementY = 0;
+                mouseIsPressed = false;
+
+                break;
+            }
+        }
+
+    }
+
+    // active_canvas = scene.renderer.domElement;
+    // active_camera = scene.camera;
+    // active_renderer = scene.renderer;
+    // active_scene = scene;
+
+    // for(let i=0; i<scene_group.length; i++){
+    //     if(scene_group[i].renderer.domElement==active_canvas && active_index!=i){
+    //         active_index = i;
+    //         angularvelocity1.set(0, 0, 0);
+    //         pmouseX1 = -1, pmouseY1 = -1, pmouseX2 = -1, pmouseY2 = -1;
+    //         mousemovementX = 0, mousemovementY = 0;
+    //         mouseIsPressed = false;
+    //         break;
+    //     }
+    // }
+
 }

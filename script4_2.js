@@ -217,6 +217,8 @@ slider1.func = () =>{
     
     //オブジェクトを更新する（各種gcを使用して、mesh_omote, mesh_ura, tubeA_group, tubeB_group, sphere_group, ribbonA_group, ribbonB_groupを更新）
     update_torus_objectC(); 
+
+    activateC(mycanvas);
 }
 
 
@@ -224,6 +226,8 @@ slider1.func = () =>{
 slider_opacity.func = () =>{
     update_materialC(mesh_omote, {opacity:1-slider_opacity.value});   
     update_materialC(mesh_ura, {opacity:1-slider_opacity.value});
+    activateC(mycanvas);
+
 }
 
 
@@ -235,6 +239,9 @@ check_kirinuki.addEventListener("input", ()=>{
     
     //オブジェクトを更新する（各種gcを使用して、mesh_omote, mesh_ura, tubeA_group, tubeB_group, sphere_group, ribbonA_group, ribbonB_groupを更新）
     update_torus_objectC(); 
+
+    activateC(mycanvas);
+
 });
 
 
