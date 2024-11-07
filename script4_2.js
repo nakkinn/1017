@@ -53,7 +53,7 @@ let renderer1 = new THREE.WebGLRenderer({
 });
 
 //キャンバスの背景色を設定する。第1引数：色, 第2引数：透明度（alphaがfalseの場合、キャンバスのデフォルト背景色は黒なので、透明度を下げると暗い色になる。alphaがtrueの場合は透明度を下げると下のレイヤーが透けて見える）
-renderer1.setClearColor(0xffffff, 1);   
+renderer1.setClearColor(0xeeeeee, 1);   
 
 
 
