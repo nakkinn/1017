@@ -317,6 +317,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 // ダブルタップズームを防止
 document.addEventListener('dblclick', function(event) {
     event.preventDefault();
+    alert("double tap")
 });
 
 
