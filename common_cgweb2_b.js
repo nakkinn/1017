@@ -8,85 +8,6 @@ function acos(a1){return Math.acos(a1)};
 function atan(a1){return Math.atan(a1)};
 
 
-let active_index = -1, active_canvas, active_camera, active_renderer, active_scene;
-
-
-class SceneC extends THREE.Scene{
-
-    constructor(renderer, camera){
-
-        super();
-        this.renderer = renderer;
-        this.camera = camera;
-
-        scene_group.push( this );
-
-        active_index = scene_group.length - 1;
-        active_canvas = scene_group[active_index].renderer.domElement;
-        active_camera = scene_group[active_index].camera;
-        active_renderer = scene_group[active_index].renderer;
-        active_scene = scene_group[active_index];
-
-        active_canvas.addEventListener('pointerdown',()=>{press_updateC();});
-        active_canvas.addEventListener('pointermove',(event)=>{
-            mousemovment_updateC(event)
-        });
-        active_canvas.addEventListener('touchmove', handleTouchMoveC); //タッチデバイスをなぞったときhandleTouchMoveを発火
-        active_canvas.addEventListener('touchend', handleTouchEndC);   //タッチデバイスから指を離したときhandleTouchEndを発火
-
-        //カメラのアスペクト比の設定
-        let canvas = this.renderer.domElement;
-        if(camera.type == "PerspectiveCamera"){
-            camera.aspect = canvas.width / canvas.height;
-        }
-        if(camera.type=='OrthographicCamera'){
-            let aspect = canvas.width / canvas.height;
-            if(canvas.width > canvas.height){
-                camera.left *= aspect;
-                camera.right *= aspect;
-            }else{
-                camera.top /= aspect;
-                camera.bottom /= aspect;
-            }
-        }
-        camera.updateProjectionMatrix();
-    }
-
-}
-
-
-
-function rendering_startC(scene1, renderer1, camera1){
-    
-    scene_group.push({scene:scene1, renderer:renderer1, camera:camera1});
-    
-
-
-    //active_canvas.addEventListener('pointerdown',()=>{press_updateC();});
-    // active_canvas.addEventListener('pointermove',(event)=>{
-    //     mousemovment_updateC(event)
-    // });
-    // active_canvas.addEventListener('touchmove', handleTouchMoveC); //タッチデバイスをなぞったときhandleTouchMoveを発火
-    //active_canvas.addEventListener('touchend', handleTouchEndC);   //タッチデバイスから指を離したときhandleTouchEndを発火
-
-    //カメラのアスペクト比の設定
-    // let canvas = renderer1.domElement;
-    // if(camera1.type == "PerspectiveCamera"){
-    //     camera1.aspect = canvas.width / canvas.height;
-    // }
-    // if(camera1.type=='OrthographicCamera'){
-    //     let aspect = canvas.width / canvas.height;
-    //     if(canvas.width > canvas.height){
-    //         camera1.left *= aspect;
-    //         camera1.right *= aspect;
-    //     }else{
-    //         camera1.top /= aspect;
-    //         camera1.bottom /= aspect;
-    //     }
-    // }
-    // camera1.updateProjectionMatrix();
-}
-
 
 //#############################################################
 //入力や操作
@@ -108,82 +29,77 @@ let angularvelocity1 = new THREE.Vector3(0, 0, 0);  //オブジェクトの回�
 
 let myfunclist = [];    //animate関数内で行う処理
 
-let scene_group = [];
+let active_index = -1, active_canvas, active_camera, active_renderer, active_scene;
+let cg_container = [];
+
+
+
+function rendering_setC(scene1, renderer1, camera1){
+    cg_container.push({scene:scene1, renderer:renderer1, camera:camera1});
+}
 
 
 //キャンバス要素にイベントリスナを設定
 function cgweb_setupC(){
 
-document.querySelectorAll("canvas").forEach( canvas => {
+    document.querySelectorAll("canvas").forEach( canvas => {
 
-    canvas.style.touchAction = 'none';     //スクロール禁止
+        canvas.style.touchAction = 'none';     //スクロール禁止
 
-    //canvas.addEventListener('touchmove',(event)=>{event.preventDefault();},{passive:false});    //削除
+        //canvas.addEventListener('touchmove',(event)=>{event.preventDefault();},{passive:false});    //削除
 
-    canvas.addEventListener("pointerdown", ()=>{
-        for(let i=0; i<scene_group.length; i++){
-            if(canvas === scene_group[i].renderer.domElement && active_index!=i){
+        canvas.addEventListener("pointerdown", ()=>{
+            for(let i=0; i<cg_container.length; i++){
+                if(canvas === cg_container[i].renderer.domElement && active_index!=i){
 
-                // active_canvas.removeEventListener("pointerdown", press_updateC); //削除
-                // active_canvas.removeEventListener("pointermove", mousemovment_updateC);  //削除
-                // active_canvas.removeEventListener('touchmove', handleTouchMoveC); //タッチデバイスをなぞったときhandleTouchMoveを発火
-                // active_canvas.removeEventListener('touchend', handleTouchEndC);   //タッチデバイスから指を離したときhandleTouchEndを発火
+                    active_index = i;
+                    active_canvas = cg_container[i].renderer.domElement;
+                    active_camera = cg_container[i].camera;
+                    active_renderer = cg_container[i].renderer;
+                    active_scene = cg_container[i].scene;
 
-                active_index = i;
-                active_canvas = scene_group[i].renderer.domElement;
-                active_camera = scene_group[i].camera;
-                active_renderer = scene_group[i].renderer;
-                active_scene = scene_group[i].scene;
+                    angularvelocity1.set(0, 0, 0);
+                    pmouseX1 = -1, pmouseY1 = -1, pmouseX2 = -1, pmouseY2 = -1;
+                    mousemovementX = 0, mousemovementY = 0;
+                    mouseIsPressed = true;
 
-                angularvelocity1.set(0, 0, 0);
-                pmouseX1 = -1, pmouseY1 = -1, pmouseX2 = -1, pmouseY2 = -1;
-                mousemovementX = 0, mousemovementY = 0;
-                mouseIsPressed = true;
-
-                // active_canvas.addEventListener('pointerdown',()=>{press_updateC();});    //削除
-                // active_canvas.addEventListener('pointermove',(event)=>{  //削除
-                //     mousemovment_updateC(event)
-                // });
-                // active_canvas.addEventListener('touchmove', handleTouchMoveC); //タッチデバイスをなぞったときhandleTouchMoveを発火
-                // active_canvas.addEventListener('touchend', handleTouchEndC);   //タッチデバイスから指を離したときhandleTouchEndを発火
-
-                break;
+                    break;
+                }
             }
-        }
-        mouseIsPressed = true;
+            mouseIsPressed = true;
+        });
+
+        canvas.addEventListener('pointermove',(event)=>{
+            mousemovment_updateC(event)
+        });
+
+        canvas.addEventListener('touchmove', handleTouchMoveC); //タッチデバイスをなぞったときhandleTouchMoveを発火
+        canvas.addEventListener('touchend', handleTouchEndC);   //タッチデバイスから指を離したときhandleTouchEndを発火
+
+        canvas.addEventListener('mousemove',(event)=>{
+
+            const size_adjust_d = 20;   //キャンバスリサイズ範囲
+        
+            const rect1 = event.target.getBoundingClientRect();
+        
+            let cw = rect1.width;
+            let ch = rect1.height;
+            let px = event.x - rect1.left;
+            let py = event.y - rect1.top;
+        
+            if(cw-px<size_adjust_d && ch-py<size_adjust_d){
+                document.body.style.cursor = 'nwse-resize';
+            }else if(!mouseIsPressed){
+                document.body.style.cursor = 'default';
+            }
+        
+        });
+
+        canvas.addEventListener('mouseleave',()=>{
+            if(!mouseIsPressed)  document.body.style.cursor = 'default';
+        });
+
     });
-
-    canvas.addEventListener('pointermove',(event)=>{
-        mousemovment_updateC(event)
-    });
-
-    canvas.addEventListener('touchmove', handleTouchMoveC); //タッチデバイスをなぞったときhandleTouchMoveを発火
-    canvas.addEventListener('touchend', handleTouchEndC);   //タッチデバイスから指を離したときhandleTouchEndを発火
-
-    canvas.addEventListener('mousemove',(event)=>{
-
-        const size_adjust_d = 20;   //キャンバスリサイズ範囲
-    
-        const rect1 = event.target.getBoundingClientRect();
-    
-        let cw = rect1.width;
-        let ch = rect1.height;
-        let px = event.x - rect1.left;
-        let py = event.y - rect1.top;
-    
-        if(cw-px<size_adjust_d && ch-py<size_adjust_d){
-            document.body.style.cursor = 'nwse-resize';
-        }else if(!mouseIsPressed){
-            document.body.style.cursor = 'default';
-        }
-    
-    });
-
-    canvas.addEventListener('mouseleave',()=>{
-        if(!mouseIsPressed)  document.body.style.cursor = 'default';
-    });
-
-});
 
 }
 
@@ -342,25 +258,25 @@ document.addEventListener('mousemove',(event)=>{
 //htmlに要素を配置し終わったとき
 document.addEventListener("DOMContentLoaded", ()=>{
     
-    for(let i=0; i<scene_group.length; i++){
+    for(let i=0; i<cg_container.length; i++){
 
-        let camera = scene_group[i].camera;
-        let renderer = scene_group[i].renderer;
+        let camera = cg_container[i].camera;
+        let renderer = cg_container[i].renderer;
         let canvas = renderer.domElement;
         camera.aspect = canvas.width / canvas.height;
 
         if( camera.type=='OrthographicCamera'){
             let range = Math.min( camera.right,  camera.top);
             if( canvas.width >  canvas.height){
-                camera.left = - range *  camera.aspect;
-                camera.right = range *  camera.aspect;
+                camera.left = - range * camera.aspect;
+                camera.right = range * camera.aspect;
                 camera.top = range;
                 camera.bottom = -range;
             }else{
                 camera.left = - range;
                 camera.right = range;
-                camera.top = range /  camera.aspect;
-                camera.bottom = - range /  camera.aspect;
+                camera.top = range / camera.aspect;
+                camera.bottom = - range / camera.aspect;
             }
         }
 
@@ -370,13 +286,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     cgweb_setupC();
 
-    active_index = scene_group.length - 1;
-    active_canvas = scene_group[active_index].renderer.domElement;
-    active_camera = scene_group[active_index].camera;
-    active_renderer = scene_group[active_index].renderer;
-    active_scene = scene_group[active_index].scene;
+    active_index = cg_container.length - 1;
+    active_canvas = cg_container[active_index].renderer.domElement;
+    active_camera = cg_container[active_index].camera;
+    active_renderer = cg_container[active_index].renderer;
+    active_scene = cg_container[active_index].scene;
 
-    scene_group.forEach( i => i.renderer.render(i.scene, i.camera));
+    cg_container.forEach( i => i.renderer.render(i.scene, i.camera));
 
     animateC();
 
@@ -389,10 +305,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
 //#############################################################
 
 
-//スライダー操作時、画面スクロールが起きないようにする
-document.querySelectorAll('input[type="range"]').forEach(function(input) {  
-    input.style.touchAction = 'none';
-});
+// //スライダー操作時、画面スクロールが起きないようにする
+// document.querySelectorAll('input[type="range"]').forEach(function(input) {  
+//     input.style.touchAction = 'none';
+// });
 
 
 //スマホで要素を長押しした際に、右クリックメニューが出ないようにする
@@ -403,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.mozUserSelect = 'none';
     });
 });
-
 
 
 
@@ -1228,14 +1143,14 @@ function spherecutC([vtsa, indexa], r1){
 //     active_renderer = scene.renderer;
 //     active_scene = scene;
 
-//     for(let i=0; i<scene_group.length; i++){
-//         if(scene_group[i].renderer.domElement.id == active_canvas.id && active_index!=i){
+//     for(let i=0; i<cg_container.length; i++){
+//         if(cg_container[i].renderer.domElement.id == active_canvas.id && active_index!=i){
 
 //             active_index = i;
-//             active_canvas = scene_group[i].renderer.domElement;
-//             active_camera = scene_group[i].camera;
-//             active_renderer = scene_group[i].renderer;
-//             active_scene = scene_group[i];
+//             active_canvas = cg_container[i].renderer.domElement;
+//             active_camera = cg_container[i].camera;
+//             active_renderer = cg_container[i].renderer;
+//             active_scene = cg_container[i];
 
 //             angularvelocity1.set(0, 0, 0);
 //             pmouseX1 = -1, pmouseY1 = -1, pmouseX2 = -1, pmouseY2 = -1;

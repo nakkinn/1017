@@ -39,8 +39,6 @@ let spherecut_radius = 3.8; //カット球面の半径
 
 let detail = 128;    //分割数
 
-addCanvasC(mycanvas, {width:500, height:400});
-
 
 //##################################
 //　レンダラ・カメラ・シーン・ライト
@@ -48,7 +46,7 @@ addCanvasC(mycanvas, {width:500, height:400});
 
 //レンダラー
 let renderer1 = new THREE.WebGLRenderer({
-    canvas:mycanvas,  //描画先のキャンバス
+    canvas:document.getElementById("mycanvas"),//mycanvas,  //描画先のキャンバス
     antialias: true,    //trueの時:境界線のスムージングを有効にする
     alpha:false, //trueの時:キャンバスを透過させる（下のレイヤーが見える）
     preserveDrawingBuffer: false    //trueの時:キャンバスの内容を画像データとして保持する。toDataURLを使った画像保存が可能になる
@@ -83,9 +81,9 @@ let scene2 = new THREE.Scene();
 
 
 //ライト
-let lighta1 = new THREE.AmbientLight(0xffffff, 0.5); //環境ライト
-let lightd1 = new THREE.DirectionalLight(0xffffff, 0.6);    //指向性ライト
-lightd1.position.set(0, 1, 1);
+let lighta1 = new THREE.AmbientLight(0xffffff, 0.4); //環境ライト
+let lightd1 = new THREE.DirectionalLight(0xffffff, 0.5);    //指向性ライト
+lightd1.position.set(0, -1, 1);
 scene1.add(lighta1);
 scene1.add(lightd1);
 
@@ -396,25 +394,16 @@ scene1.add( mesh_ura );
 
 
 
-let triangle_gc = [ [[1,1,1], [1,-1,1], [1,-1,-1]], [[0,1,2]] ]; 
-let triangle = createMeshC(triangle_gc, {color:0xff0056});
+let tetra_gc = [ [[1,1,1], [1,-1,-1], [-1,1,-1],[-1,-1,1]], [[0,1,2], [0,2,3], [0,3,1], [1,2,3]] ]; 
+let tetra = createMeshC(tetra_gc, {color:0xff0056, flatshade:true});
 scene2.add(lighta1.clone());
 scene2.add(lightd1.clone());
-scene2.add(triangle);
-
-//レンダリング
-rendering_startC(scene1, renderer1, camera1);
-rendering_startC(scene2, renderer2, camera2);
+scene2.add(tetra)
 
 
 
-
-
-// animateC();
-
-
-// renderer1.render(scene1, camera1);
-
-// console.log(scene1);
+//シーン・レンダラー・カメラをセットにする
+rendering_setC(scene1, renderer1, camera1);
+rendering_setC(scene2, renderer2, camera2);
 
 

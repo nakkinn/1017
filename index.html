@@ -16,16 +16,16 @@
     <!--自作スライダーライブラリ-->
     <script src="myslider_b.js"></script>
     <!--表示するオブジェクトやレンダリングの設定、スライダー操作時の処理について記述したファイル-->
-    <script src='script4_2.js'></script>  
 
 
 
-    <h3>ドーナツ型の裏返し 1107_v1</h3>
+
+    <h3>ドーナツ型の裏返し 1107_v2</h3>
 
 
     <!--キャンバスの追加-->
     <script>
-      addCanvasC(mycanvas, {width:500, height:400});
+      //addCanvasC(mycanvas, {width:500, height:400});
     </script>
 
 
@@ -34,8 +34,8 @@
 
     <!--スライダーの追加-->
     <script>
-      slider1.addC({width:Math.min(400, window.innerWidth*0.9),bar_width:Math.min(400*0.6, window.innerWidth*0.6),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff"});
-      slider_opacity.addC({width:Math.min(400, window.innerWidth*0.9),bar_width:Math.min(400*0.6, window.innerWidth*0.6),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff"});
+      //slider1.addC({width:Math.min(400, window.innerWidth*0.9),bar_width:Math.min(400*0.6, window.innerWidth*0.6),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff"});
+      //slider_opacity.addC({width:Math.min(400, window.innerWidth*0.9),bar_width:Math.min(400*0.6, window.innerWidth*0.6),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff"});
     </script>
 
 
@@ -44,8 +44,8 @@
     
     <!--チェックボックスの追加-->
     <script>
-      addElementC(check_kirinuki);  //check_kirinukiはscript4で定義
-      addElementC( labelC("無限遠点に広がる部分を切り抜く", check_kirinuki) );  //labelC関数 第1引数：ラベルの文字, 第2引数：紐づけるチェックボックス
+      //addElementC(check_kirinuki);  //check_kirinukiはscript4で定義
+      //addElementC( labelC("無限遠点に広がる部分を切り抜く", check_kirinuki) );  //labelC関数 第1引数：ラベルの文字, 第2引数：紐づけるチェックボックス
     </script>
 
 
@@ -56,8 +56,20 @@
 
 
     <script>
-      addCanvasC(subcanvas, {width:500, height:400});
+      //addCanvasC(subcanvas, {width:500, height:400});
     </script>
+
+    <canvas id="mycanvas"></canvas>
+    <script>
+      let canvas1 = document.getElementById('mycanvas'); 
+      let size = Math.min(600, window.innerWidth);
+      canvas1.width = size * window.devicePixelRatio; 
+      canvas1.height = size * window.devicePixelRatio * 0.85;
+      canvas1.style.width = size;
+      canvas1.style.height = size * 0.85;
+    </script>
+
+    <script src='script4_2.js'></script>  
 
 
   </body>
