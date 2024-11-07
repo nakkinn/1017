@@ -321,13 +321,16 @@ function animateC(){
     //myfunclist内の関数を実行する
     myfunclist.forEach(func => func());
 
-    // let v1 = active_camera.getWorldDirection(new THREE.Vector3()).normalize();
-    // let v2 = v1.clone().cross(active_camera.up.clone());
-    // let v3 = v2.applyAxisAngle( v1, Math.atan2(mousemovementY,mousemovementX) - PI/2).normalize();
-    // v3.multiplyScalar( sqrt(mousemovementX**2 + mousemovementY**2) * 1);
+    let v1 = active_camera.getWorldDirection(new THREE.Vector3()).normalize();
+    let v2 = v1.clone().cross(active_camera.up.clone());
+    let v3 = v2.applyAxisAngle( v1, Math.atan2(mousemovementY,mousemovementX) - PI/2).normalize();
+    v3.multiplyScalar( sqrt(mousemovementX**2 + mousemovementY**2) * 1);
 
-    // if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(/*new THREE.Vector3(mousemovementY,mousemovementX, 0)*/ v3, 0.2);
-    if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(new THREE.Vector3(mousemovementY, 0, mousemovementX),0.2);
+    if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(/*new THREE.Vector3(mousemovementY,mousemovementX, 0)*/ v3, 0.2);
+    
+    
+    
+    //if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(new THREE.Vector3(mousemovementY, 0, mousemovementX),0.2);
     let axis = angularvelocity1.clone().normalize();
     let rad = angularvelocity1.length()*0.007;
 

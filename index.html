@@ -7,57 +7,11 @@
 
   <body>
 
-    <!--three.jsライブラリ　CDNを使ってインターネット経由でライブラリをインポートする-->
-    <script src="https://unpkg.com/three@0.131.3/build/three.min.js"></script>
-    <!--three.jsの機能を扱いやすくするための自作ライブラリ-->
-    <script src="common_cgweb2_b.js"></script> 
-    <!--jsでhtml要素の追加を行うための自作ライブラリ-->
-    <script src="create_element.js"></script> 
-    <!--自作スライダーライブラリ-->
-    <script src="myslider_b.js"></script>
-    <!--表示するオブジェクトやレンダリングの設定、スライダー操作時の処理について記述したファイル-->
-    <script src='script4_2.js'></script>  
+    <a href="index1.html">サンプル１</a>
 
+    <a href="index2.html">サンプル２</a>
 
-    <h3>ドーナツ型の裏返し 1107_v16</h3>
-
-
-    <!--キャンバスの追加-->
-    <script>
-      addCanvasC(mycanvas, {width:500, height:400});
-    </script>
-
-
-    <div style="height:10px"></div>
-
-
-    <!--スライダーの追加-->
-    <script>
-      slider1.addC({width:Math.min(400, window.innerWidth*0.9),bar_width:Math.min(400*0.6, window.innerWidth*0.6),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff"});
-      slider_opacity.addC({width:Math.min(400, window.innerWidth*0.9),bar_width:Math.min(400*0.6, window.innerWidth*0.6),height:50,bar_height:15,thumb_radius:20,background_color:"#ffffff"});
-    </script>
-
-
-    <div style="height:10px"></div>
-
-    
-    <!--チェックボックスの追加-->
-    <script>
-      addElementC(check_kirinuki);  //check_kirinukiはscript4で定義
-      addElementC( labelC("無限遠点に広がる部分を切り抜く", check_kirinuki) );  //labelC関数 第1引数：ラベルの文字, 第2引数：紐づけるチェックボックス
-    </script>
-
-
-    <p>
-      画面上をマウスドラッグしてグラフィックをいろいろな方向から見ることができます。<br>
-      マウススクロールにより拡大縮小ができます。
-    </p>
-
-
-    <script>
-      addCanvasC(subcanvas, {width:500, height:400});
-    </script>
-
+    <a href="index3.html">サンプル３</a>
 
   </body>
 

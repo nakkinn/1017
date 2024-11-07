@@ -227,7 +227,6 @@ slider_opacity.func = () =>{
     update_materialC(mesh_omote, {opacity:1-slider_opacity.value});   
     update_materialC(mesh_ura, {opacity:1-slider_opacity.value});
     activateC(mycanvas);
-
 }
 
 

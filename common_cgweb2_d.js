@@ -321,15 +321,21 @@ function animateC(){
     //myfunclist内の関数を実行する
     myfunclist.forEach(func => func());
 
-    // let v1 = active_camera.getWorldDirection(new THREE.Vector3()).normalize();
-    // let v2 = v1.clone().cross(active_camera.up.clone());
-    // let v3 = v2.applyAxisAngle( v1, Math.atan2(mousemovementY,mousemovementX) - PI/2).normalize();
-    // v3.multiplyScalar( sqrt(mousemovementX**2 + mousemovementY**2) * 1);
+    let v1 = active_camera.getWorldDirection(new THREE.Vector3()).normalize();
+    let v2 = v1.clone().cross(active_camera.up.clone());
+    let v3 = v2.applyAxisAngle( v1, Math.atan2(mousemovementY,mousemovementX) - PI/2).normalize();
+    v3.multiplyScalar( sqrt(mousemovementX**2 + mousemovementY**2) * 1);
 
-    // if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(/*new THREE.Vector3(mousemovementY,mousemovementX, 0)*/ v3, 0.2);
-    if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(new THREE.Vector3(mousemovementY, 0, mousemovementX),0.2);
+    if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(/*new THREE.Vector3(mousemovementY,mousemovementX, 0)*/ v3, 0.2);
+    //if(mouseIsPressed && !twofinger && document.body.style.cursor!='nwse-resize')  angularvelocity1.lerp(new THREE.Vector3(mousemovementY, 0, mousemovementX),0.2);
     let axis = angularvelocity1.clone().normalize();
     let rad = angularvelocity1.length()*0.007;
+
+    document.getElementById("text1").textContent = v1.x.toFixed(3) + "," + v1.y.toFixed(3) + "," + v1.z.toFixed(3);
+    document.getElementById("text2").textContent = v2.x.toFixed(3) + "," + v2.y.toFixed(3) + "," + v2.z.toFixed(3);
+    document.getElementById("text3").textContent = v3.x.toFixed(3) + "," + v3.y.toFixed(3) + "," + v3.z.toFixed(3);
+    document.getElementById("text4").textContent = angularvelocity1.x.toFixed(3) + "," + angularvelocity1.y.toFixed(3) + "," + angularvelocity1.z.toFixed(3);
+
 
     //回転量が微小なとき回転を完全に止める
     if(Math.abs(rad)<0.001) rad = 0; 
